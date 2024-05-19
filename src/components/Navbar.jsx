@@ -1,10 +1,11 @@
-import './Navbar.scss';
+import './Navbar.scss'
+import logo from '../assets/logo.png'
 
 const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo"> 
-        <img src="logo.png" alt="Logo" /> {/* Assumindo que você tem um logo */}
+        <img src="logo.png" alt="Logo" />
       </div>
       <ul className="navbar-links">
         <li><a href="/">Início</a></li>
@@ -16,7 +17,7 @@ const Navbar = () => {
         <button>Login</button>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
