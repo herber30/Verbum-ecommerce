@@ -3,7 +3,7 @@ import './Navbar.scss';
 import CartWidget from '../components/CartWidget';
 import logo from '../assets/logo.png';
 
-const NavBar = () => {
+const NavBar = ({ itemCount }) => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -18,10 +18,9 @@ const NavBar = () => {
       <div className="navbar-login">
         <button>Login</button>
       </div>
-      <CartWidget /> {/* Adicionando o CartWidget à navbar */}
+      <CartWidget itemCount={itemCount} />
     </nav>
   );
 }
-
 
 export default NavBar;

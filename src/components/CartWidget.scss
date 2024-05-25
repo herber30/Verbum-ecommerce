@@ -1,15 +1,14 @@
-/* src/components/CartWidget.css */
 .cart-widget {
     display: flex;
     align-items: center;
+    gap: 5px; /* Espaçamento entre o ícone e o número */
   }
   
   .cart-icon {
-    margin-right: 5px;
+    font-size: 20px; /* Ajuste o tamanho do ícone conforme necessário */
   }
   
   .cart-count {
     font-size: 14px;
     font-weight: bold;
   }
-  
