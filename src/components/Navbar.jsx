@@ -1,7 +1,7 @@
-import React from 'react';
-import './Navbar.scss';
-import CartWidget from '../components/CartWidget';
-import logo from '../assets/logo.png';
+import React from 'react'
+import './Navbar.scss'
+import CartWidget from '../components/CartWidget'
+import logo from '../assets/logo.png'
 
 const NavBar = ({ itemCount }) => {
   return (
@@ -23,4 +23,4 @@ const NavBar = ({ itemCount }) => {
   );
 }
 
-export default NavBar;
+export default NavBar

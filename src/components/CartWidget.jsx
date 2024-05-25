@@ -1,6 +1,6 @@
-import React from 'react';
-import { FaShoppingCart } from 'react-icons/fa';
-import './CartWidget.scss';
+import React from 'react'
+import { FaShoppingCart } from 'react-icons/fa'
+import './CartWidget.scss'
 
 const CartWidget = ({ itemCount }) => {
   return (
@@ -11,4 +11,4 @@ const CartWidget = ({ itemCount }) => {
   );
 };
 
-export default CartWidget;
+export default CartWidget
