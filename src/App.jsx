@@ -1,14 +1,15 @@
-import Navbar from './components/Navbar'
-import './App.css'
+import React from 'react';
+import NavBar from './components/Navbar';
+import ItemListContainer from './components/ItemListContainer';
+import './App.css'; // Caso queira adicionar algum estilo específico
+
 function App() {
   return (
-    <div>
-      <Navbar />
-      <div className="content">
-        {/* Conteúdo principal da aplicação */}
-      </div>
+    <div className="App">
+      <NavBar />
+      <ItemListContainer greeting="Bem-vindo ao nosso catálogo!" />
     </div>
   );
 }
 
-export default App
+export default App;
