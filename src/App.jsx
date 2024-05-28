@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import NavBar from './components/Navbar'
-import ItemListContainer from './components/ItemListContainer'
+import NavBar from './components/NavBar/Navbar'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import './App.css'
+import { Router, Routes } from 'react-router-dom'
 
 function App() {
   const [cartItems, setCartItems] = useState(0)

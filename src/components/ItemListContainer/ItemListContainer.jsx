@@ -1,6 +1,6 @@
 import React from 'react';
-import ItemCount from '../components/ItemCount'
-import './ItemListContainer.scss'
+import ItemCount from '../ItemCount/ItemCount'
+import '../ItemListContainer/ItemListContainer.scss'
 
 function ItemListContainer({ items, onAdd }) {
   return (
