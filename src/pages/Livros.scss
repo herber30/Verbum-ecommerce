@@ -1,0 +1,36 @@
+.livros {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .product {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .product img {
+    max-width: 100%;
+    height: 200px;
+  }
+  
+  
+  .product h2 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .product p {
+    font-size: 14px;
+    color: #555;
+  }
+  

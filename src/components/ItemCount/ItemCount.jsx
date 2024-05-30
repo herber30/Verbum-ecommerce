@@ -1,29 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
   const [count, setCount] = useState(initial);
-  const [isDisabled, setIsDisabled] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false);
 
   useEffect(() => {
-    setCount(initial)
-    setIsDisabled(stock === 0); // Desabilita o botão se não houver estoque
-  }, [initial, stock])
+    setCount(initial);
+    setIsDisabled(stock === 0); 
+  }, [initial, stock]);
 
   const increment = () => {
     if (count < stock) {
-      setCount(count + 1)
+      setCount(count + 1);
     }
   };
 
   const decrement = () => {
     if (count > initial) {
-      setCount(count - 1)
+      setCount(count - 1);
     }
   };
 
   const handleAdd = () => {
-    onAdd(count)
-    setIsDisabled(true) // Desabilita o botão após adicionar ao carrinho
+    onAdd(count); 
   };
 
   return (
@@ -38,4 +37,4 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
   );
 };
 
-export default ItemCount
+export default ItemCount;

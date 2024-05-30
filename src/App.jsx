@@ -1,43 +1,38 @@
-import React, { useState } from 'react'
-import NavBar from './components/NavBar/Navbar'
-import ItemListContainer from './components/ItemListContainer/ItemListContainer'
-import './App.css'
-import { Router, Routes } from 'react-router-dom'
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/NavBar/Navbar';
+import Home from './pages/Home';
+import Generos from './pages/Generos';
+import Livros from './pages/Livros';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 
-function App() {
-  const [cartItems, setCartItems] = useState(0)
+const App = () => {
+  const [cartItems, setCartItems] = useState({});
 
-  const products = [
-    { id: 1, 
-      name: 'O Senhor dos aneis', 
-      description: 'Edição de Colecionador com Ilustrações de Alan Lee', 
-      image: 'https://m.media-amazon.com/images/I/61N4u6ijSeL._SL1200_.jpg', 
-      stock: 5 },
+  const handleAddToCart = (productId, quantity) => {
+    setCartItems(prevCartItems => ({
+      ...prevCartItems,
+      [productId]: (prevCartItems[productId] || 0) + quantity
+    }));
+  };
 
-    { id: 2, 
-      name: 'O Olho do Mundo - Série A Roda do Tempo – Vol. 1', 
-      description: 'Livro que deu origem à série A Roda do Tempo, superprodução do Amazon Prime Video', 
-      image: 'https://m.media-amazon.com/images/I/51hv6Z7TRPL._SL1000_.jpg', stock: 8 },
-    { 
-      id: 3, 
-      name: 'Orgulho e Preconceito', 
-      description: 'Um romance clássico escrito por Jane Austen.', 
-      image: 'https://m.media-amazon.com/images/I/61aiRqYj81L._SL1080_.jpg', 
-      stock: 10 
-    },
-    // ... mais produtos
-  ]
-
-  const handleAddToCart = (quantity) => {
-    setCartItems(prevCartItems => prevCartItems + quantity)
+  const calculateTotalItems = () => {
+    return Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
   };
 
   return (
-    <div className="App">
-      <NavBar itemCount={cartItems} />
-      <ItemListContainer items={products} onAdd={handleAddToCart} />
-    </div>
+    <Router>
+      <Navbar itemCount={calculateTotalItems()} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/generos" element={<Generos />} />
+        <Route path="/livros" element={<Livros handleAddToCart={handleAddToCart} />} />
+        <Route path="/category/:id" element={<ItemListContainer onAdd={handleAddToCart} />} />
+        <Route path="/item/:id" element={<ItemDetailContainer onAdd={handleAddToCart} />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
-export default App
+export default App;

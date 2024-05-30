@@ -11,7 +11,6 @@ const NavBar = ({ itemCount }) => {
       </div>
       <ul className="navbar-links">
         <li><a href="/">Início</a></li>
-        <li><a href="/promocao">Promoção</a></li>
         <li><a href="/generos">Gêneros</a></li>
         <li><a href="/livros">Livros</a></li>
       </ul>
