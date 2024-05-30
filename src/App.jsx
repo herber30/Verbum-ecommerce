@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavBar/Navbar';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Generos from './pages/Generos';
-import Livros from './pages/Livros';
+import Livros from './pages/Livros/Livros';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 

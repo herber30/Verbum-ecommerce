@@ -1,7 +1,7 @@
 import React from 'react'
 import './Navbar.scss'
 import CartWidget from '../CartWidget/CartWidget'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/Bookstore.png'
 
 const NavBar = ({ itemCount }) => {
   return (

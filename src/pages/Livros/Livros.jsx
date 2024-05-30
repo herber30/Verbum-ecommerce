@@ -1,6 +1,6 @@
 import React from 'react';
 import './Livros.scss';
-import ItemCount from '../components/ItemCount/ItemCount';
+import ItemCount from '../../components/ItemCount/ItemCount';
 
 const products = [
   {
