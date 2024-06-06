@@ -9,4 +9,4 @@ const Generos = () => {
   );
 }
 
-export default Generos;
+export default Generos
