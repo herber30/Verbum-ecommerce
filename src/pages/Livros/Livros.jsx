@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Livros.scss';
 import ItemCount from '../../components/ItemCount/ItemCount';
+import CartContext from '../../components/Context/CartContext';
 
 const products = [
   {
@@ -48,22 +49,31 @@ const products = [
   // ... mais produtos
 ];
 
-const Livros = ({ handleAddToCart }) => {
-    return (
-      <div className="livros">
-        <h1>Livros Disponíveis</h1>
-        <div className="products">
-          {products.map((product) => (
-            <div key={product.id} className="product">
-              <img src={product.image} alt={product.name} />
-              <h2>{product.name}</h2>
-              <p>{product.description}</p>
-              <ItemCount stock={product.stock} onAdd={(quantity) => handleAddToCart(product.id, quantity)} />
-            </div>
-          ))}
-        </div>
-      </div>
-    );
+const Livros = () => {
+  const { addItem } = useContext(CartContext);
+
+  const handleAddToCart = (productId, quantity) => {
+      const product = products.find(p => p.id === productId);
+      if (product) {
+          addItem(product, quantity);
+      }
   };
-  
-  export default Livros;
+
+  return (
+      <div className="livros">
+          <h1>Livros Disponíveis</h1>
+          <div className="products">
+              {products.map(product => (
+                  <div key={product.id} className="product">
+                      <img src={product.image} alt={product.name} />
+                      <h2>{product.name}</h2>
+                      <p>{product.description}</p>
+                      <ItemCount stock={product.stock} onAdd={(quantity) => handleAddToCart(product.id, quantity)} />
+                  </div>
+              ))}
+          </div>
+      </div>
+  );
+};
+
+export default Livros;

@@ -1,14 +1,19 @@
+// src/components/CartWidget/CartWidget.scss
 .cart-widget {
-    display: flex;
-    align-items: center;
-    gap: 5px; /* Espaçamento entre o ícone e o número */
-  }
-  
-  .cart-icon {
-    font-size: 20px; 
-  }
-  
-  .cart-count {
-    font-size: 14px;
-    font-weight: bold;
-  }
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.item-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 12px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
