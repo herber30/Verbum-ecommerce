@@ -1,58 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import ItemList from '../Item/ItemList';
-import './ItemListContainer.scss';
+import React from 'react';
+import ItemCount from '../ItemCount/ItemCount'
+import '../ItemListContainer/ItemListContainer.scss'
 
-const mockItems = [
-  {
-    id: 1,
-    title: 'O Senhor dos Anéis',
-    description: 'Edição de Colecionador com Ilustrações de Alan Lee',
-    price: 49.99,
-    pictureUrl: 'https://m.media-amazon.com/images/I/61N4u6ijSeL._SL1200_.jpg',
-    stock: 10,
-  },
-  {
-    id: 2,
-    title: 'O Olho do Mundo - Série A Roda do Tempo – Vol. 1',
-    description: 'Livro que deu origem à série A Roda do Tempo',
-    price: 29.99,
-    pictureUrl: 'https://m.media-amazon.com/images/I/51hv6Z7TRPL._SL1000_.jpg',
-    stock: 15,
-  },
-  {
-    id: 3,
-    title: 'Orgulho e Preconceito',
-    description: 'Um romance clássico escrito por Jane Austen',
-    price: 19.99,
-    pictureUrl: 'https://m.media-amazon.com/images/I/61aiRqYj81L._SL1080_.jpg',
-    stock: 7,
-  },
-];
+function ItemListContainer({ items, onAdd }) {
+ return (
+   <div className="item-list-container">
+     {items.map(item => (
+       <div key={item.id} className="product-card">
+         <img src={item.image} alt={item.name} className="product-image" />
+         <h2 className="product-title">{item.name}</h2>
+         <p className="product-description">{item.description}</p>
+         <ItemCount initial={1} stock={item.stock} onAdd={(quantity) => onAdd(item.id, quantity)} />
+       </div>
+     ))}
+   </div>
+ );
+}
 
-const ItemListContainer = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchItems = () => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(mockItems);
-        }, 2000);
-      });
-    };
-
-    fetchItems().then(data => {
-      setItems(data);
-      setLoading(false);
-    });
-  }, []);
-
-  return (
-    <div className="item-list-container">
-      {loading ? <div>Carregando...</div> : <ItemList items={items} />}
-    </div>
-  );
-};
-
-export default ItemListContainer;
+export default ItemListContainer
