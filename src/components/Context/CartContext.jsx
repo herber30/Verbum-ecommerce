@@ -1,45 +1,21 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-// Cria o contexto
-const CartContext = createContext();
+export const CartContext = createContext();
 
-// Provedor do contexto
 export const CartProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState([]);
+  const [cart, setCart] = useState([]);
 
-    // Função para adicionar item ao carrinho
-    const addItem = (item, quantity) => {
-        setCartItems(prevItems => {
-            const existingItem = prevItems.find(i => i.id === item.id);
-            if (existingItem) {
-                return prevItems.map(i => 
-                    i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i
-                );
-            }
-            return [...prevItems, { ...item, quantity }];
-        });
-    };
+  const addItemToCart = (item) => {
+    setCart([...cart, item]);
+  };
 
-    // Função para remover item do carrinho
-    const removeItem = (itemId) => {
-        setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
-    };
+  const removeItemFromCart = (itemId) => {
+    setCart(cart.filter(item => item.id !== itemId));
+  };
 
-    // Função para limpar o carrinho
-    const clear = () => {
-        setCartItems([]);
-    };
-
-    // Função para verificar se um item está no carrinho
-    const isInCart = (id) => {
-        return cartItems.some(item => item.id === id);
-    };
-
-    return (
-        <CartContext.Provider value={{ cartItems, addItem, removeItem, clear, isInCart }}>
-            {children}
-        </CartContext.Provider>
-    );
+  return (
+    <CartContext.Provider value={{ cart, addItemToCart, removeItemFromCart }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
-
-export default CartContext;
