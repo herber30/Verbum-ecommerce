@@ -1,4 +1,3 @@
-// src/components/CartDropdown/CartDropdown.jsx
 import React, { useContext } from 'react';
 import CartContext from '../../components/Context/CartContext';
 import './CartDropdown.scss';
@@ -15,14 +14,16 @@ const CartDropdown = () => {
                     <div className="cart-items">
                         {cartItems.map(item => (
                             <div key={item.id} className="cart-item">
-                                <img src={item.image} alt={item.name} />
+                                <img src={item.pictureUrl} alt={item.title} /> {/* Exibe a imagem */}
                                 <div className="item-details">
-                                    <span className="name">{item.name}</span>
+                                    <span className="name">{item.title}</span>
                                     <span className="price">
-                                        {item.quantity} x ${item.price}
+                                        {item.quantity} x ${item.price.toFixed(2)} 
                                     </span>
                                 </div>
-                                <button className="remove-button" onClick={() => removeItem(item.id)}>Remover</button>
+                                <button className="remove-button" onClick={() => removeItem(item.id)}>
+                                    Remover
+                                </button>
                             </div>
                         ))}
                     </div>

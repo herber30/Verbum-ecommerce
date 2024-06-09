@@ -20,6 +20,8 @@ const NavBar = ({ itemCount }) => {
       <CartWidget itemCount={itemCount} />
     </nav>
   );
-}
-
-export default NavBar
+ }
+ 
+ 
+ export default NavBar
+ 

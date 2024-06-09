@@ -1,36 +1,42 @@
 .livros {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .product {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    width: 200px;
-    text-align: center;
-  }
-  
-  .product img {
-    max-width: 100%;
-    height: 200px;
-  }
-  
-  
-  .product h2 {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  .product p {
-    font-size: 14px;
-    color: #555;
-  }
-  
+  padding: 20px;
+  text-align: center;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  gap: 20px; /* Espaço entre os itens */
+}
+
+.product {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px; /* Aumenta o padding para melhor espaçamento */
+  width: 250px; /* Define uma largura fixa para os cards */
+  box-sizing: border-box; /* Inclui o padding e a borda no cálculo da largura */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transições suaves */
+}
+
+.product:hover {
+  transform: translateY(-5px); /* Eleva o card ao passar o mouse */
+  box-shadow: 0 4px 8px rgba(29, 12, 12, 0.2); /* Sombra mais intensa ao passar o mouse */
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product p {
+  font-size: 14px;
+  color: #555;
+}
