@@ -4,7 +4,7 @@ import './Banner.scss';
 const banners = [
   {
     id: 1,
-    image: 'https://podpop.com.br/PodPOP/wp-content/uploads/2021/12/Banner-livros-Podpop.jpg',
+    image: 'https://podpop.com.br/PodPOP/wp-content/uploads/2021/12/Banner-livros-Podpop.jpg ',
     title: 'Desconto de 50%',
     description: 'Aproveite nossas ofertas de 50% de desconto em diversos produtos.',
   },
