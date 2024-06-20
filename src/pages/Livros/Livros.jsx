@@ -3,14 +3,7 @@ import { Link } from 'react-router-dom'
 import ItemList from '../../components/Item/ItemList'; 
 import './Livros.scss';
 
-const Livros = () => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const fetchItems = () => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve([
+const mockItems = [
             {
               id: 1,
               title: 'O Senhor dos Anéis',
@@ -53,26 +46,51 @@ const Livros = () => {
               price: 14.99,
               pictureUrl: 'https://m.media-amazon.com/images/I/818NT3GSvsL._SL1500_.jpg',
             }
-          ]); 
-        }, 2000); 
-      });
+          ];
+
+    const Livros = ({ handleAddToCart }) => {
+      const [items, setItems] = useState([]);
+      const [loading, setLoading] = useState(true);
+    
+      useEffect(() => {
+        const fetchItems = () => {
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(mockItems); // Resolva a promise com os dados mockados
+            }, 2000); // Simulando um atraso de 2 segundos
+          });
+        };
+    
+        fetchItems()
+          .then((data) => {
+            setItems(data);
+          })
+          .finally(() => {
+            setLoading(false); // Define loading como false após a busca, independente do resultado
+          });
+      }, []);
+    
+      return (
+        <div className="livros">
+          <h1>Livros Disponíveis</h1>
+    
+          {loading ? (
+            <div className="loader">
+              {mockItems.map((product) => (
+                <div key={product.id} className="skeleton-loader">
+                  <div className="skeleton-image"></div>
+                  <div className="skeleton-title"></div>
+                  <div className="skeleton-description"></div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="products">
+              <ItemList items={items} handleAddToCart={handleAddToCart} />
+            </div>
+          )}
+        </div>
+      );
     };
-
-    fetchItems().then(data => {
-      setItems(data);
-    });
-  }, []);
-
-  return (
-    <div className="livros">
-      <h1>Livros Disponíveis</h1>
-      {items.length === 0 ? (
-        <div>Carregando...</div>
-      ) : (
-        <ItemList items={items} />
-      )}
-    </div>
-  );
-};
-
-export default Livros;
+    
+    export default Livros;

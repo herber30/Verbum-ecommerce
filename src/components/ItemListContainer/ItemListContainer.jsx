@@ -7,6 +7,7 @@ import './ItemListContainer.scss'
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchItems = () => {
@@ -32,15 +33,21 @@ const ItemListContainer = () => {
       });
     };
 
-    fetchItems().then(data => {
-      setItems(data);
-    });
+    fetchItems()
+      .then((data) => {
+        setItems(data);
+      })
+      .finally(() => {
+        setLoading(false); 
+      });
   }, []);
 
   return (
     <div className="item-list-container">
-      {items.length === 0 ? (
-        <div>Carregando...</div>
+      {loading ? (
+        <div className="loader">
+          <div className="spinner"></div> {/* Spinner simples */}
+        </div>
       ) : (
         <ItemList items={items} />
       )}

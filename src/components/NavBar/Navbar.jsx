@@ -2,6 +2,7 @@ import React from 'react'
 import './Navbar.scss'
 import CartWidget from '../CartWidget/CartWidget'
 import logo from '../../assets/Bookstore.png'
+import { Link } from 'react-router-dom'
 
 const NavBar = ({ itemCount }) => {
   return (
@@ -15,7 +16,9 @@ const NavBar = ({ itemCount }) => {
         <li><a href="/livros">Livros</a></li>
       </ul>
       <div className="navbar-login">
-        <button>Login</button>
+        <Link to="/login"> {/* Use Link para o redirecionamento */}
+          <button>Login</button>
+        </Link>
       </div>
       <CartWidget itemCount={itemCount} />
     </nav>

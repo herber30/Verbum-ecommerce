@@ -9,6 +9,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import { CartProvider } from './components/Context/CartContext';
 import './App.scss';
+import Login from './pages/Login';
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
                            <Route path="/" element={<Home />} />
                            <Route path="/generos" element={<Generos />} />
                            <Route path="/livros" element={<Livros />} />
+                           <Route path="/login" element={<Login />} />
                            <Route path="/category/:id" element={<ItemListContainer />} />
                            <Route path="/item/:id" element={<ItemDetailContainer />} />
                        </Routes>

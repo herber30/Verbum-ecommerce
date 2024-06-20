@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ItemCount from '../ItemCount/ItemCount';
 import CartContext from '../../components/Context/CartContext';
 import './ItemDetailContainer.scss'
+import { FaStar, FaShareAlt } from 'react-icons/fa'
 
 const mockItems = [
   {
@@ -50,40 +51,51 @@ const mockItems = [
 ];
 
 const ItemDetailContainer = () => {
-    const { id } = useParams();
-    const [item, setItem] = useState(null);
-    const { addItem } = useContext(CartContext);   
-
-  useEffect(() => {
-    const fetchItem = () => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const foundItem = mockItems.find(item => item.id === parseInt(id));
-          resolve(foundItem);
-        }, 2000);
-      });
-    };
-
-    fetchItem().then(data => {
-      setItem(data);
-    });
-  }, [id]);
-
-  if (!item) {
-    return <div>Carregando...</div>;
-  }
+  const { id } = useParams();
+  const [item, setItem] = useState(null);
+  const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
+  const { addItem } = useContext(CartContext);
 
   const handleAddToCart = (quantity) => {
     addItem(item, quantity);
   };
 
+  useEffect(() => {
+    const fetchItem = () => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const foundItem = mockItems.find((item) => item.id === parseInt(id));
+          resolve(foundItem);
+        }, 2000); // Simulando um atraso de 2 segundos
+      });
+    };
+
+    fetchItem()
+      .then((data) => {
+        setItem(data);
+      })
+      .finally(() => {
+        setLoading(false); // Define loading como false após a busca, independente do resultado
+      });
+  }, [id]);
+
   return (
     <div className="item-detail-container">
-      <img src={item.pictureUrl} alt={item.title} />
-      <h1>{item.title}</h1>
-      <p>{item.description}</p>
-      <p>${item.price}</p>
-      <ItemCount stock={item.stock || 10} onAdd={handleAddToCart} />
+      {loading ? (
+        <div className="loader">
+          <div className="spinner"></div> 
+        </div>
+      ) : item ? ( // Verifica se o item foi encontrado
+        <>
+          <img src={item.pictureUrl} alt={item.title} />
+          <h1>{item.title}</h1>
+          <p>{item.description}</p>
+          <p>${item.price}</p>
+          <ItemCount stock={10} onAdd={handleAddToCart} /> 
+        </>
+      ) : (
+        <p>Item não encontrado</p> // Mensagem caso o item não seja encontrado
+      )}
     </div>
   );
 };
